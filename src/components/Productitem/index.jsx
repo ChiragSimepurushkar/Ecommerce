@@ -317,7 +317,7 @@ useEffect(() => {
                 <div className="flex items-center gap-4">
                     <span className='oldPrice line-through text-gray-500 font-[500] text-[15px]'>&#x20b9;{props?.item?.OldPrice}</span>
                     <span className='price text-[#ff5252] text-[12px] lg:text-[15px] font-[600]'>
-                    {props?.item?.price?.toLocaleString('en-US', { style: 'currency', currency: 'INR' })}}</span>
+                    {props?.item?.price?.toLocaleString('en-US', { style: 'currency', currency: 'INR' })}</span>
                 </div>
                 <div className="!absolute bottom-[15px] left-0 pl-3 pr-3 w-full">
                     {
