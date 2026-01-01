@@ -2,100 +2,62 @@ import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
-import { Navigation } from 'swiper/modules';
+import { Autoplay, Navigation } from 'swiper/modules';
 import { Link } from 'react-router-dom';
 import '../../index.css';
-const HomeCatSlider = () => {
+import { useContext } from 'react';
+import { MyContext } from '../../App';
+const HomeCatSlider = (props) => {
+    const context = useContext(MyContext)
+
     return (
-        <div className="homeCatSlider py-8 pt-4">
-            <div className="container">
+        <div className="homeCatSlider pt-0 py-4 lg:py-8 lg:pt-4">
+            <div className="container-fluid">
                 <Swiper
-                    slidesPerView={5}
+                    // slidesPerView={5}
                     spaceBetween={10}
-                    navigation={true}
-                    modules={[Navigation]}
+                    navigation={context?.windowWidth < 992 ? false : true}
+                    modules={[Navigation, Autoplay]}
+                    breakpoints={{
+                        0: {
+                            slidesPerView: 3,
+                            spaceBetween: 5,
+                        },
+                        640: {
+                            slidesPerView: 4,
+                            spaceBetween: 5,
+                        },
+                        768: {
+                            slidesPerView: 5,
+                            spaceBetween: 5,
+                        },
+                        1024: {
+                            slidesPerView: 8,
+                            spaceBetween: 5,
+                        },
+                    }}
+                    autoplay={{
+                        delay: 2000,
+                        disableOnInteraction: false,
+                    }}
+                    loop={true}
                     className="mySwiper"
                 >
-                    <SwiperSlide>
-                        <Link to="/">
-                        <div className="item py-7 px-3 bg-white rounded-sm text-center flex items-center justify-center flex-col ">
-                            <img src="https://serviceapi.spicezgold.com/download/1755610847575_file_1734525204708_fash.png" className='w-[60px]'/>
-                            <h3 className='text-[15px] font-[600] mt-3'>Fashions</h3>
-                        </div>
-                        </Link>
-                    </SwiperSlide>
-                       <SwiperSlide>
-                        <Link to="/">
-                        <div className="item py-7 px-3 bg-white rounded-sm text-center flex items-center justify-center flex-col ">
-                            <img src="https://serviceapi.spicezgold.com/download/1755610847575_file_1734525204708_fash.png" className='w-[60px] transition-all'/>
-                            <h3 className='text-[15px] font-[600] mt-3'>Electronics</h3>
-                        </div>
-                        </Link>
-                    </SwiperSlide>
-                      <SwiperSlide>
-                        <Link to="/">
-                        <div className="item py-7 px-3 bg-white rounded-sm text-center flex items-center justify-center flex-col ">
-                            <img src="https://serviceapi.spicezgold.com/download/1755610847575_file_1734525204708_fash.png" className='w-[60px] transition-all'/>
-                            <h3 className='text-[15px] font-[600] mt-3'>Bags</h3>
-                        </div>
-                        </Link>
-                    </SwiperSlide>
-                     <SwiperSlide>
-                        <Link to="/">
-                        <div className="item py-7 px-3 bg-white rounded-sm text-center flex items-center justify-center flex-col ">
-                            <img src="https://serviceapi.spicezgold.com/download/1755610847575_file_1734525204708_fash.png" className='w-[60px] transition-all'/>
-                            <h3 className='text-[15px] font-[600] mt-3'>Groceries</h3>
-                        </div>
-                        </Link>
-                    </SwiperSlide>
-                     <SwiperSlide>
-                        <Link to="/">
-                        <div className="item py-7 px-3 bg-white rounded-sm text-center flex items-center justify-center flex-col ">
-                            <img src="https://serviceapi.spicezgold.com/download/1755610847575_file_1734525204708_fash.png" className='w-[60px] transition-all'/>
-                            <h3 className='text-[15px] font-[600] mt-3'>Jewellery</h3>
-                        </div>
-                        </Link>
-                    </SwiperSlide>
-                     <SwiperSlide>
-                        <Link to="/">
-                        <div className="item py-7 px-3 bg-white rounded-sm text-center flex items-center justify-center flex-col ">
-                            <img src="https://serviceapi.spicezgold.com/download/1755610847575_file_1734525204708_fash.png" className='w-[60px] transition-all'/>
-                            <h3 className='text-[15px] font-[600] mt-3'>Beauty</h3>
-                        </div>
-                        </Link>
-                    </SwiperSlide>
-                     <SwiperSlide>
-                        <Link to="/">
-                        <div className="item py-7 px-3 bg-white rounded-sm text-center flex items-center justify-center flex-col ">
-                            <img src="https://serviceapi.spicezgold.com/download/1755610847575_file_1734525204708_fash.png" className='w-[60px] transition-all'/>
-                            <h3 className='text-[15px] font-[600] mt-3'>Smart Tablet</h3>
-                        </div>
-                        </Link>
-                    </SwiperSlide>
-                     <SwiperSlide>
-                        <Link to="/">
-                        <div className="item py-7 px-3 bg-white rounded-sm text-center flex items-center justify-center flex-col ">
-                            <img src="https://serviceapi.spicezgold.com/download/1755610847575_file_1734525204708_fash.png" className='w-[60px] transition-all'/>
-                            <h3 className='text-[15px] font-[600] mt-3'>Smart Tablet</h3>
-                        </div>
-                        </Link>
-                    </SwiperSlide>
-                     <SwiperSlide>
-                        <Link to="/">
-                        <div className="item py-7 px-3 bg-white rounded-sm text-center flex items-center justify-center flex-col ">
-                            <img src="https://serviceapi.spicezgold.com/download/1755610847575_file_1734525204708_fash.png" className='w-[60px] transition-all'/>
-                            <h3 className='text-[15px] font-[600] mt-3'>Smart Tablet</h3>
-                        </div>
-                        </Link>
-                    </SwiperSlide>
-                     <SwiperSlide>
-                        <Link to="/">
-                        <div className="item py-7 px-3 bg-white rounded-sm text-center flex items-center justify-center flex-col ">
-                            <img src="https://serviceapi.spicezgold.com/download/1755610847575_file_1734525204708_fash.png" className='w-[60px] transition-all'/>
-                            <h3 className='text-[15px] font-[600] mt-3'>Smart Tablet</h3>
-                        </div>
-                        </Link>
-                    </SwiperSlide>
+                    {
+                        props?.data?.map((cat, index) => {
+                            return (
+                                <SwiperSlide key={index}>
+                                    <Link to="/">
+                                        <div className="item py-4 lg:py-7 px-3 bg-white rounded-sm text-center flex items-center justify-center flex-col ">
+                                            <img src={cat?.images[0]}
+                                             className='w-[40px] lg:w-[60px]' />
+                                            <h3 className='text-[12px] lg:text-[15px] font-[600] mt-3'>{cat?.name}</h3>
+                                        </div>
+                                    </Link>
+                                </SwiperSlide>
+                            )
+                        })
+                    }
                 </Swiper>
             </div>
         </div>

@@ -1,39 +1,40 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 
 import { Autoplay, Navigation } from 'swiper/modules';
-const HomeSlider = () => {
+import { MyContext } from '../../App';
+const HomeSlider = (props) => {
+  const context = useContext(MyContext)
+
   return (
-    <div className="homeSlider py-4">
-      <div className="container">
+    <div className="homeSlider pt-2 pb-2 lg:pt-5 lg:pb-5 z-[99]">
+      <div className="container-fluid">
         <Swiper
           spaceBetween={10}
-          navigation={true}
+          navigation={context?.windowWidth<992?false:true}
           modules={[Navigation, Autoplay]}
-          loop={true}
-          loopedSlides={4} 
+          loop
           slidesPerView={1}
           autoplay={{
             delay: 2500,
             disableOnInteraction: false,
-          }} className="sliderHome">
-          <SwiperSlide>
-            <div className="item rounded-[20px] overflow-hidden">
-              <img src="https://serviceapi.spicezgold.com/download/1755503364377_1721277298204_banner.jpg" />
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="item rounded-[20px] overflow-hidden">
-              <img src="https://serviceapi.spicezgold.com/download/1748955932914_NewProject(1).jpg" /></div></SwiperSlide>
-          <SwiperSlide>
-            <div className="item rounded-[20px] overflow-hidden">
-              <img src="https://serviceapi.spicezgold.com/download/1751685130717_NewProject(8).jpg" /></div></SwiperSlide>
-          <SwiperSlide>
-            <div className="item rounded-[20px] overflow-hidden">
-              <img src="https://serviceapi.spicezgold.com/download/1751685144346_NewProject(11).jpg" />
-            </div></SwiperSlide>
+          }}
+          className="sliderHome"
+        >
+
+          {
+            props?.data?.length !== 0 && props?.data?.map((item, index) => {
+              return (
+                <SwiperSlide key={index}>
+                  <div className="item rounded-[10px] !-ml-5 !mr-5 overflow-hidden">
+                    <img src={item.images[0]} />
+                  </div>
+                </SwiperSlide>
+              )
+            })
+          }
         </Swiper>
       </div>
     </div>

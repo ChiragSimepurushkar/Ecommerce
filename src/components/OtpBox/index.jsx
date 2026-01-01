@@ -56,7 +56,7 @@ const OtpBox = ({ length, onChange }) => {
                     onKeyDown={(e) => handleKeyDown(e, index)}
                     
                     // Tailwind/CSS styles
-                    className="w-[45px] h-[45px] text-center text-[17px]"
+                    className="w-[35px] h-[35px] sm:w-[45px] sm:h-[45px] text-center text-[17px]"
                     style={{
                         // Ensure input is styled correctly (as defined in the CSS snippet)
                         border: '1px solid rgba(0,0,0,0.3)', 

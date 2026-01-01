@@ -1,41 +1,55 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
-import { Navigation } from 'swiper/modules';
+import { Autoplay, Navigation } from 'swiper/modules';
 import BannerBox from '../BannerBox';
+import { MyContext } from '../../App';
+import BannerBoxV2 from '../BannerBoxV2';
 const AdsBannerSlider = (props) => {
+    const context=useContext(MyContext)
+
     return (
         <div className='py-5 w-full'>
             <Swiper
                 slidesPerView={props.items}
                 spaceBetween={10}
-                navigation={true}
-                modules={[Navigation]}
+                navigation={context?.windowWidth < 992 ? false : true}
+                modules={[Navigation, Autoplay]}
+                loop
+                breakpoints={{
+                    300: {
+                        slidesPerView: 1,
+                        spaceBetween: 5,
+                    },
+                    450: {
+                        slidesPerView: 2,
+                        spaceBetween: 5,
+                    },
+                    750: {
+                        slidesPerView: 3,
+                        spaceBetween: 5,
+                    },
+                    1100: {
+                        slidesPerView: 4,
+                        spaceBetween: 5,
+                    },
+                }}
+                autoplay={{
+                    delay: 2500,
+                    disableOnInteraction: false,
+                }}
                 className="smlBtn"
             >
-                <SwiperSlide>
-                <BannerBox img={"https://serviceapi.spicezgold.com/download/1741669012402_banner1.webp"} link={'/'}/>
-                </SwiperSlide>
-            <SwiperSlide>
-                <BannerBox img={"https://serviceapi.spicezgold.com/download/1742453755529_1741669087880_banner6.webp"} link={'/'}/>
-                </SwiperSlide>
-                <SwiperSlide>
-                <BannerBox img={"https://serviceapi.spicezgold.com/download/1741669057847_banner5.webp"} link={'/'}/>
-                </SwiperSlide>
-                <SwiperSlide>
-                <BannerBox img={"https://serviceapi.spicezgold.com/download/1741669037986_banner2.webp"} link={'/'}/>
-                </SwiperSlide>
-                <SwiperSlide>
-                <BannerBox img={"https://serviceapi.spicezgold.com/download/1741669012402_banner1.webp"} link={'/'}/>
-                </SwiperSlide>
-                <SwiperSlide>
-                <BannerBox img={"https://serviceapi.spicezgold.com/download/1742453755529_1741669087880_banner6.webp"} link={'/'}/>
-                </SwiperSlide>
-                <SwiperSlide>
-                <BannerBox img={"https://serviceapi.spicezgold.com/download/1741669057847_banner5.webp"} link={'/'}/>
-                </SwiperSlide>
+                {props?.data?.map((item, index) => {
+                    return (
+                        <SwiperSlide key={index}>
+                            <BannerBoxV2 item={item} image={item?.images?.[0]} link={"/"} />
+                        </SwiperSlide>
+                    )
+                })}
             </Swiper>
+
         </div>
     );
 }
